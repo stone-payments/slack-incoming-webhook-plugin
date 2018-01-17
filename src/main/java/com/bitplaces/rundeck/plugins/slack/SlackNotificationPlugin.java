@@ -57,6 +57,7 @@ public class SlackNotificationPlugin implements NotificationPlugin {
     private static final String TRIGGER_START = "start";
     private static final String TRIGGER_SUCCESS = "success";
     private static final String TRIGGER_FAILURE = "failure";
+    private static final String TRIGGER_AVERAGE = "avgduration";
 
     private static final Map<String, SlackNotificationData> TRIGGER_NOTIFICATION_DATA = new HashMap<String, SlackNotificationData>();
 
@@ -94,6 +95,7 @@ public class SlackNotificationPlugin implements NotificationPlugin {
         TRIGGER_NOTIFICATION_DATA.put(TRIGGER_START,   new SlackNotificationData(ACTUAL_SLACK_TEMPLATE, SLACK_MESSAGE_COLOR_YELLOW));
         TRIGGER_NOTIFICATION_DATA.put(TRIGGER_SUCCESS, new SlackNotificationData(ACTUAL_SLACK_TEMPLATE, SLACK_MESSAGE_COLOR_GREEN));
         TRIGGER_NOTIFICATION_DATA.put(TRIGGER_FAILURE, new SlackNotificationData(ACTUAL_SLACK_TEMPLATE, SLACK_MESSAGE_COLOR_RED));
+        TRIGGER_NOTIFICATION_DATA.put(TRIGGER_AVERAGE, new SlackNotificationData(ACTUAL_SLACK_TEMPLATE, SLACK_MESSAGE_COLOR_YELLOW));
 
         try {
             FREEMARKER_CFG.setSetting(Configuration.CACHE_STORAGE_KEY, "strong:20, soft:250");
