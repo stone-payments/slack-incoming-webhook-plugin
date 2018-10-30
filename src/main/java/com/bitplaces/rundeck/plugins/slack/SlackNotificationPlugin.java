@@ -63,14 +63,21 @@ public class SlackNotificationPlugin implements NotificationPlugin {
 
     private static final Configuration FREEMARKER_CFG = new Configuration();
 
-    @PluginProperty(title = "WebHook Base URL", description = "Slack Incoming WebHook Base URL", required = true, defaultValue = "https://hooks.slack.com/services")
+    @PluginProperty(title = "WebHook Base URL",
+                    description = "Slack Incoming WebHook Base URL",
+                    defaultValue = "https://hooks.slack.com/services",
+                    scope=PropertyScope.Instance)
     private String webhook_base_url;
 
     @Password
-    @PluginProperty(title = "WebHook Token", description = "WebHook Token, like T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX", required = true)
+    @PluginProperty(title = "WebHook Token",
+                    description = "WebHook Token, like T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+                    scope=PropertyScope.Instance)
     private String webhook_token;
 
-    @PluginProperty(title = "Slack Channel", description = "Slack Channel, like #channel-name (optional)")
+    @PluginProperty(title = "Slack Channel",
+                    description = "Slack Channel, like #channel-name (optional)",
+                    scope=PropertyScope.Instance)
     private String slack_channel;
 
     /**
@@ -105,6 +112,10 @@ public class SlackNotificationPlugin implements NotificationPlugin {
 
         if (!TRIGGER_NOTIFICATION_DATA.containsKey(trigger)) {
             throw new IllegalArgumentException("Unknown trigger type: [" + trigger + "].");
+        }
+
+        if(this.webhook_base_url.isEmpty() || this.webhook_token.isEmpty()){
+            throw new IllegalArgumentException("URL or Token not set");
         }
 
         String webhook_url=this.webhook_base_url+"/"+this.webhook_token;
