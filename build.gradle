@@ -6,7 +6,7 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'pl.allegro.tech.build.axion-release'
 
-sourceCompatibility = 1.6
+sourceCompatibility = 1.8
 defaultTasks 'clean', 'build'
 
 configurations{
@@ -28,21 +28,14 @@ scmVersion {
 
         //apend .0 to satisfy semver if the tag version is only X.Y
         deserialize = { config, position, tagName ->
-            println("config:" + config)
-            println("position:" + position)
-            println("tagName:" + tagName)
             def orig = origDeserialize(config, position, tagName)
-            println("orig:" + orig)
             if (orig.split('\\.').length < 3) {
                 orig += ".0"
             }
-            println("orig2:" + orig)
             orig
         }
     }
 }
-
-println("scmVersion.version:" +  scmVersion.version)
 project.version = scmVersion.version
 
 repositories {

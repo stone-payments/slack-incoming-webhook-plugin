@@ -122,7 +122,7 @@ public class SlackNotificationPlugin implements NotificationPlugin {
 
         String message = generateMessage(trigger, executionData, config, this.slack_channel);
         String slackResponse = invokeSlackAPIMethod(webhook_url, message);
-        String ms = "payload=" + URLEncoder.encode(message);
+        String ms = "payload=" + this.urlEncode(message);
 
         if ("ok".equals(slackResponse)) {
             return true;
@@ -174,7 +174,7 @@ public class SlackNotificationPlugin implements NotificationPlugin {
 
         HttpURLConnection connection = null;
         InputStream responseStream = null;
-        String body = "payload=" + URLEncoder.encode(message);
+        String body = "payload=" + this.urlEncode(message);
         try {
             connection = openConnection(requestUrl);
             putRequestStream(connection, body);
