@@ -7,14 +7,14 @@ on:
     paths:
       - src/*
       - build.gradle
-      - .github/*
+      - .github/**/*
   push:
     branches:
       - master
     paths:
       - src/*
       - build.gradle
-      - .github/*
+      - .github/**/*
 
 jobs:
   build_and_release:
@@ -46,7 +46,7 @@ jobs:
         id: generate_changelog
         env:
           REPO: ${{ github.repository }}
-        if: github.ref_name == 'main'
+        if: github.ref_name == 'master'
 
       - name: Create Release
         id: create_release
@@ -60,7 +60,7 @@ jobs:
             ${{ steps.generate_changelog.outputs.changelog }}
           draft: false
           prerelease: false
-        if: github.ref_name == 'main'
+        if: github.ref_name == 'master'
 
       - name: Upload Release Asset
         id: upload_release_asset
@@ -72,4 +72,4 @@ jobs:
           asset_path: ./build/libs/${{ env.ARTIFACT_NAME }}-${{ steps.get_version.outputs.version }}.jar
           asset_name: ${{ env.ARTIFACT_NAME }}-${{ steps.get_version.outputs.version }}.jar
           asset_content_type: application/tar+gzip
-        if: github.ref_name == 'main'
+        if: github.ref_name == 'master'
