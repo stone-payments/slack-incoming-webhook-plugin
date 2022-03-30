@@ -3,14 +3,14 @@ name: Build and Release Plugin
 on:
   pull_request:
     branches:
-      - main
+      - master
     paths:
       - src/*
       - build.gradle
       - .github/*
   push:
     branches:
-      - main
+      - master
     paths:
       - src/*
       - build.gradle
