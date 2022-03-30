@@ -3,7 +3,7 @@
 <#else>
     <#assign jobName="${executionData.job.name}">
 </#if>
-<#assign message="*<${executionData.href}|Execution #${executionData.id}>* of job *`<${executionData.job.href}|${jobName}>`*">
+<#assign message="<${executionData.href}|*Execution #${executionData.id}*> of job <${executionData.job.href}|*`${jobName}`*>">
 <#if trigger == "start">
     <#assign state="Started">
 <#elseif trigger == "failure">

@@ -49,7 +49,6 @@ jar {
         attributes 'Rundeck-Plugin-Target-Host-Compatibility': 'all'
         attributes 'Rundeck-Plugin-Author': 'Paulo Mariano (paulo.azevedo@stone.com.br)'
         attributes 'Rundeck-Plugin-Version': "1.2", 'Rundeck-Plugin-Archive': 'true','Rundeck-Plugin-File-Version': "${project.version}"
-
         //create space-separated list of pluginLibs
         def libList = configurations.pluginLibs.collect{'lib/'+it.name}.join(' ')
         attributes 'Rundeck-Plugin-Classnames': 'com.bitplaces.rundeck.plugins.slack.SlackNotificationPlugin', 'Rundeck-Plugin-Libs': "${libList}"
