@@ -1,9 +1,9 @@
 <#if executionData.job.group??>
-    <#assign jobName="${executionData.job.group} / ${executionData.job.name}">
+    <#assign jobName="${executionData.job.group}/${executionData.job.name}">
 <#else>
     <#assign jobName="${executionData.job.name}">
 </#if>
-<#assign message="<${executionData.href}|Execution #${executionData.id}> of job <${executionData.job.href}|${jobName}>">
+<#assign message="<${executionData.href}|*Execution #${executionData.id}*> of job <${executionData.job.href}|*`${jobName}`*>">
 <#if trigger == "start">
     <#assign state="Started">
 <#elseif trigger == "failure">
@@ -27,16 +27,6 @@
          "color":"${color}",
          "fields":[
             {
-               "title":"Job Name",
-               "value":"<${executionData.job.href}|${jobName}>",
-               "short":true
-            },
-            {
-               "title":"Project",
-               "value":"${executionData.project}",
-               "short":true
-            },
-            {
                "title":"Status",
                "value":"${state}",
                "short":true
@@ -47,8 +37,8 @@
                "short":true
             },
             {
-               "title":"Options",
-               "value":"${(executionData.argstring?replace('"', '\''))!"N/A"}",
+               "title":"Project",
+               "value":"${executionData.project}",
                "short":true
             },
             {

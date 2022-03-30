@@ -35,10 +35,9 @@ public class SlackNotificationPluginException extends RuntimeException {
      * Constructor.
      *
      * @param message error message
-     * @param cause exception cause
+     * @param cause   exception cause
      */
     public SlackNotificationPluginException(String message, Throwable cause) {
         super(message, cause);
     }
-
 }
